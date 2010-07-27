@@ -65,11 +65,9 @@ else
         mspace.c \
         selector.c \
         tztime.c \
+        tzstrftime.c \
         adb_networking.c \
         zygote.c
-
-    commonHostSources += \
-        tzstrftime.c
 endif
 
 
