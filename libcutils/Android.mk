@@ -37,7 +37,8 @@ commonSources := \
 	process_name.c \
 	properties.c \
 	threads.c \
-	sched_policy.c
+	sched_policy.c \
+	open_memstream.c
 
 commonHostSources := \
         ashmem-host.c

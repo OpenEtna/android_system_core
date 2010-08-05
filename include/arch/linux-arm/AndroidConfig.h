@@ -323,3 +323,5 @@
 #define HAVE_SCHED_H 1
 
 #endif /* _ANDROID_CONFIG_H */
+
+#define HAVE_FUNOPEN 1
