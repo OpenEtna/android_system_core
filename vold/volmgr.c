@@ -199,6 +199,7 @@ int volmgr_bootstrap(void)
         return rc;
     }
 
+#if 0
     /*
      * Check to see if any of our volumes is mounted
      */
@@ -210,7 +211,7 @@ int volmgr_bootstrap(void)
         }
         v = v->next;
     }
-
+#endif
     return 0;
 }
 
@@ -1057,6 +1058,14 @@ static int _volmgr_start(volume_t *vol, blkdev_t *dev)
         LOGE("No supported filesystems on %d:%d", dev->major, dev->minor);
         volume_setstate(vol, volstate_nofs);
         return -ENODATA;
+    }
+
+    if ( _mountpoint_mounted( vol->mount_point ) ) {
+        LOGI("Skipping the actual mounting of %s because it is already mounted", vol->mount_point);
+        vol->fs = fs;
+        vol->dev = dev;
+        volume_setstate(vol, volstate_mounted);
+        return 0;
     }
 
     return volmgr_start_fs(fs, vol, dev);
