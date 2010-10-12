@@ -396,20 +396,20 @@ int service_to_fd(const char *name)
         if(name[6]) {
             struct stat filecheck;
             ret = -1;
-            if (stat(ALTERNATE_SHELL_COMMAND, &filecheck) == 0) {
-                ret = create_subprocess(ALTERNATE_SHELL_COMMAND, "-c", name + 6);
+            if (stat(SHELL_COMMAND, &filecheck) == 0) {
+                ret = create_subprocess(SHELL_COMMAND, "-c", name + 6);
             }
             if (ret == -1) {
-                ret = create_subprocess(SHELL_COMMAND, "-c", name + 6);
+                ret = create_subprocess(ALTERNATE_SHELL_COMMAND, "-c", name + 6);
             }
         } else {
             struct stat filecheck;
             ret = -1;
-            if (stat(ALTERNATE_SHELL_COMMAND, &filecheck) == 0) {
-                ret = create_subprocess(ALTERNATE_SHELL_COMMAND, "-", 0);
+            if (stat(SHELL_COMMAND, &filecheck) == 0) {
+                ret = create_subprocess(SHELL_COMMAND, "-", 0);
             }
             if (ret == -1) {
-                ret = create_subprocess(SHELL_COMMAND, "-", 0);
+                ret = create_subprocess(ALTERNATE_SHELL_COMMAND, "-", 0);
             }
         }
 #if !ADB_HOST
